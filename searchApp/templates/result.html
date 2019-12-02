@@ -1096,65 +1096,73 @@
             </div>
         </form>
         <br>
+
         {% if num %}
-        검색결과 {{num}}개 ({{searching_time}}초)
-        <br>
-        {% for i in results %}
-        <a href="/viewer?title={{ i.title }}&query={{ keyword }}" target="_blank">
-        <div class="card" style="max-width: 80rem;">
-            <div class="card-body">
-                <h5 class="card-title">{{i.title}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">score: {{i.score}}</h6>
-                <p class="card-text">{{i.content|safe}}</p>
-                <!-- <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a> -->
-            </div>
-        </div>
-    </a>
-        <br>
-        
-        {% endfor%}
-        <!-- <div class="card">
-            <div class="card-header">
-                Featured
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                    content.</p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-            </div>
-        </div> -->
-        {% else %}
-        <em>{{ keyword }}</em>와(과) 일치하는 검색결과가 없습니다.</p>
-                <p style="margin-top:1em">제안:</p>
-                <ul style="margin-left:1.3em;margin-bottom:2em">
-                    <li>모든 단어의 철자가 정확한지 확인하세요.</li>
-                    <li>다른 검색어를 사용해 보세요.</li>
-                    <li>더 일반적인 검색어를 사용해 보세요.</li>
+            검색결과 {{num}}개 ({{searching_time}}초)
+            <br>
+            {% for i in results %}
+                <a href="/viewer?title={{ i.title }}&query={{ keyword }}" target="_blank">
+                    <div class="card" style="max-width: 80rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{i.title}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">score: {{i.score}}</h6>
+                            <p class="card-text">{{i.content|safe}}</p>
+                            <!-- <a href="#" class="card-link">Card link</a>
+                                <a href="#" class="card-link">Another link</a> -->
+                        </div>
+                    </div>
+                </a>
+                <br>
+            {% endfor%}
+            {% if results.has_other_pages %}
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    {% if results.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?query={{ keyword }}&page={{ results.previous_page_number }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+
+                    {% for i in results.paginator.page_range %}
+                        {% if results.number == i %}
+                            <li class="page-item active" aria-current="page">
+                                <a class="page-link">{{ i }} <span class="sr-only">(current)</span></a>
+                              </li>
+                        {% else %}
+                            <li class="page-item"><a class="page-link" href="?query={{ keyword }}&page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if results.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?query={{ keyword }}&page={{ results.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    {% endif %}
                 </ul>
+            </nav>
+            {% endif %}
+
+            
+
+            
+        {% else %}
+            <em>{{ keyword }}</em>와(과) 일치하는 검색결과가 없습니다.</p>
+            <p style="margin-top:1em">제안:</p>
+            <ul style="margin-left:1.3em;margin-bottom:2em">
+                <li>모든 단어의 철자가 정확한지 확인하세요.</li>
+                <li>다른 검색어를 사용해 보세요.</li>
+                <li>더 일반적인 검색어를 사용해 보세요.</li>
+            </ul>
             </div>
-        </div>
+            </div>
         {% endif%}
     </div>
-    <!-- <script src="js/extention/choices.js"></script> -->
-    <!-- <script>
-            const choices = new Choices('[data-trigger]',
-            {
-              searchEnabled: false,
-              itemSelectText: '',
-            });
-      
-          </script> -->
+    정보검색과 데이터마이닝 20181616 박정섭
+    
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 
 </html>
