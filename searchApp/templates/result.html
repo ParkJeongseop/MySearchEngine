@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins|Alatsi|Nanum+Gothic&display=swap" rel="stylesheet" />
     <link href="css/main.css" rel="stylesheet" />
     <style type="text/css">
          a:link { color: black; text-decoration: none;}
@@ -1075,8 +1075,9 @@
 
 <body>
     <div class="s003">
-        <div>MySearchEngine</div>
-        <br><br><br>
+        <a href="/">
+            <div style="font-size: 40px; font-family: Alatsi; color: #1e88e5;">MySearchEngine</div>
+        </a>
         <form action="/result" method="get">
             <div class="inner-form">
 
@@ -1161,7 +1162,19 @@
             </div>
         {% endif%}
     </div>
-    정보검색과 데이터마이닝 20181616 박정섭
+
+    <!-- Footer -->
+    <footer class="page-footer font-small blue" style="background-color: #651fff;">
+    
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3" style="color: white;">정보검색과 데이터마이닝 최종과제 검색엔진 구현
+            <a href="http://www.parkjeongseop.com/?ref=MySearchEngine" style="color:#50c058;"> 20181616 박정섭</a>
+        </div>
+        <!-- Copyright -->
+    
+    </footer>
+    <!-- Footer -->
+    
     
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 
