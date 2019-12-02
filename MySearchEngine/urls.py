@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', searchApp.views.search, name='home'),
     path('result', searchApp.views.result, name='result'),
+    path('viewer', searchApp.views.viewer, name='viewer'),
 ]
